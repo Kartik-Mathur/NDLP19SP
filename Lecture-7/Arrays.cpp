@@ -29,15 +29,39 @@ void Reverse(int a[],int n){
 }
 
 
+int *fun1(){
+	int i=10;
+
+	return &i;
+}
+
+void BubbleSort(int *a,int n){
+
+	for(int i=0;i<=n-2;i++){
+		for(int j=0;j<=n-2-i;j++){
+			if(*(a+j)>*(a+j+1)){
+				swap(*(a+j),*(a+j+1));
+			}
+		}
+	}
+
+}
+
+
+
 int main(){
 
 	int a[]={1,2,3,4,5,6,7,8};
 	int n=sizeof(a)/sizeof(int);
 
+	int b[]={4,5,6};
+	int *aptr=a;
 
-	print(a,n);
-	Reverse(a,n);
-	print(a,n);
+	// print(a,n);
+	// Reverse(a,n);
+	// print(a,n);
+	// BubbleSort(a,n);
+	print(a+1,n-1);
 
 
 
