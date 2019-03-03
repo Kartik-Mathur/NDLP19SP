@@ -13,7 +13,6 @@ bool CanPlaceQueenHere(int board[][10],int i,int j,int n){
 	// Left diagnol
 	int k=i;
 	int l=j;
-
 	while(k>=0 && l>=0){
 		if(board[k][l]){
 			return false;
@@ -31,8 +30,8 @@ bool CanPlaceQueenHere(int board[][10],int i,int j,int n){
 		k--;
 		l++;
 	}
-
 	return true;
+	
 }
 
 
