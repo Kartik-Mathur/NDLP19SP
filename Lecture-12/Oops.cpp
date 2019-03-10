@@ -5,38 +5,43 @@ using namespace std;
 
 // ------------ BLUEPRINT -----------
 class Car{
-
+private:
+	int price;
 public:
+	const int tyres;
+	static int count;
 	char *name;	
 	int model;
-	int price;
 	int mileage;
 
-	Car(){
+	Car():tyres(4){
 		name=NULL;
 		cout<<"In Default Constructor"<<endl;
+		count++;
 	}
 
 	// Parameterized Constructor
-	Car(char *n,int p,int m,int mil){
+	Car(char *n,int p,int m,int mil):tyres(4),price(p){
 		cout<<"In Parameterized Constructor"<<endl;
 		name=new char[strlen(n)+1];
 		strcpy(name,n);
-		price=p;
+		// price=p;
 		mileage=mil;
 		model=m;
+		count++;
 	}
 
-	// Car(Car &X){ 
-	// 	cout<<"In Copy Constructor"<<endl;
-	// 	name=new char[strlen(X.name)+1];
-	// 	strcpy(name,X.name);
-	// 	price=X.price;
-	// 	model=X.model;
-	// 	mileage=X.mileage;
-	// }
+	Car(Car &X):tyres(4){ 
+		cout<<"In Copy Constructor"<<endl;
+		name=new char[strlen(X.name)+1];
+		strcpy(name,X.name);
+		price=X.price;
+		model=X.model;
+		mileage=X.mileage;
+		count++;
+	}
 
-	void print(){
+	void print()const{
 		cout<<"Name  : "<<name<<endl;
 		cout<<"Price : $"<<price<<endl;
 		cout<<"Model : "<<model<<endl;
@@ -52,11 +57,48 @@ public:
 		strcpy(name,n);
 	}
 
+	void SetPrice(int p){
+		if(p>100&&p<200){
+			price=p;
+		}
+		else{
+			price=150;
+		}
+	}
+
+	int GetPrice(){
+		return price;
+	}
+
+	// Copy Assignment Operator
+	void operator=(Car X){
+		if(name!=NULL){
+			delete []name;
+			name=NULL;
+		}
+		name=new char[strlen(X.name)+1];
+		strcpy(name,X.name);
+		price=X.price;
+		model=X.model;
+		mileage=X.mileage;
+	}
+
+	~Car(){
+		cout<<"Deleting Car : "<<name<<endl;
+		count--;
+	}
+
 };
+
+int Car::count=0;
+
+
+
 
 int main(){
 	Car A;
-	A.price=100;
+	// A.price=100;
+	A.SetPrice(140);
 	A.model=1111;
 	// cout<<A.price<<" and "<<A.model<<endl;
 	// strcpy(A.name,"BMW");
@@ -70,14 +112,27 @@ int main(){
 	// B.model=2222;
 	// B.mileage=12;
 	Car C(A);
-	Car D(C);
+	// Car D(C);
 
-	D.name[0]='T';
-	
+	// D.name[0]='T';
+	// Car E;
+	// E=A;
+	// E.name[0]='Z';
+	// cout<<A.price<<endl;
+	Car*D=new Car("Ford",300,2020,20);
+
+	cout<<A.GetPrice()<<endl;
 	A.print();
 	B.print();
 	C.print();
-	D.print();
+	(*D).print();
+	cout<<A.count<<endl;
+	delete D;
+	cout<<A.count<<endl;
+
+	// D.print();
+	// E.print();
+
 
 	
 
