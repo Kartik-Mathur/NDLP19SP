@@ -1,5 +1,6 @@
 // ExperimentalAnalysis
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 void BubbleSort(int *a,int n){
@@ -65,6 +66,29 @@ void MergeSort(int *a,int s,int e){
 }
 
 int main(){
+
+	int a[100000];
+	int n;
+	cin>>n;
+
+	for(int i=0;i<n;i++){
+		a[i]=n-i;
+	}
+	clock_t t;
+
+	t=clock();
+	MergeSort(a,0,n-1);
+	t=clock()-t;
+	cout<<"MergeSort took "<<t<<" ms"<<endl;
+	for(int i=0;i<n;i++){
+		a[i]=n-i;
+	}
+
+	t=clock();
+	BubbleSort(a,n);
+	t=clock()-t;
+	cout<<"BubbleSort took "<<t<<" ms"<<endl;
+
 
 
 
