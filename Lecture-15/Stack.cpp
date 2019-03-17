@@ -1,12 +1,15 @@
 // Stack
 #include <iostream>
-#include "Stack.h"
+// #include "Stack.h"
+#include <stack>
 using namespace std;
 
 int main(){
-	Stack s;
-
-	for(int i=0;i<6;i++){
+	stack<int> s;
+	// s.push('A');
+	// s.push('B');
+	// s.push('C');
+	for(int i=0;i<10;i++){
 		s.push(i);
 	}
 

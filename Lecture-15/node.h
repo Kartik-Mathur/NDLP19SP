@@ -1,9 +1,14 @@
 #include <iostream>
 using namespace std;
 
+template<typename T>
 class node{
 public:
-	int data;
+	T data;
 	node* next;
-	node(int d):data(d),next(NULL){}
+
+	node(T d):data(d),next(NULL){
+
+	}
+
 };

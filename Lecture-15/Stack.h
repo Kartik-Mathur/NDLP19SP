@@ -1,14 +1,10 @@
 #include <iostream>
-// #include "node.h"
+#include "node.h"
 using namespace std;
-class node{
-public:
-	int data;
-	node* next;
-	node(int d):data(d),next(NULL){}
-};
+
+template<typename T>
 class Stack{
-	node* head;
+	node<T>* head;
 	int count;
 public:
 	Stack(){
@@ -16,13 +12,13 @@ public:
 		count=0;
 	}
 
-	void push(int d){
+	void push(T d){
 		if(head==NULL){
-			head=new node(d);
+			head=new node<T>(d);
 			count++;
 		}
 		else{
-			node* n=new node(d);
+			node<T>* n=new node<T>(d);
 			n->next=head;
 			head=n;
 			count++;
@@ -33,13 +29,13 @@ public:
 		if(head==NULL){
 			return;
 		}
-		node* temp=head;
+		node<T>* temp=head;
 		head=head->next;
 		delete temp;
 		count--;
 	}
 
-	int top(){
+	T top(){
 		return head->data;
 	}
 
